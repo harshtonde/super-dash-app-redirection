@@ -95,17 +95,20 @@ class _TargetPageWidgetState extends State<TargetPageWidget> {
                         children: [
                           Lottie.asset(
                             'assets/lottie_animations/animation_lmm8gmat.json',
-                            width: 150.0,
-                            height: 130.0,
-                            fit: BoxFit.cover,
+                            height: 200.0,
+                            fit: BoxFit.contain,
                             frameRate: FrameRate(60.0),
                             repeat: false,
                             animate: true,
                           ),
-                          Text(
-                            'Congratulations!\nThe redirection has completed.',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 24.0, 0.0, 0.0),
+                            child: Text(
+                              'Congratulations!\nThe redirection has completed.',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            ),
                           ),
                         ].divide(SizedBox(height: 12.0)),
                       ),
