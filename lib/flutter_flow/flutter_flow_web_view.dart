@@ -49,7 +49,7 @@ class _FlutterFlowWebViewState extends State<FlutterFlowWebView> {
         navigationDelegate: (request) async {
           if (isAndroid) {
             if (request.content.source
-                .startsWith('https://api.whatsapp.com/send?phone')) {
+                .startsWith('https://super-dash-app.web.app')) {
               String url = request.content.source;
 
               await launchUrl(
