@@ -91,8 +91,9 @@ class _WebViewRedirectWidgetState extends State<WebViewRedirectWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                       child: FlutterFlowWebView(
-                        content: 'https://flutter.dev',
+                        content: 'https://web-redirection-app.flutterflow.app',
                         bypass: false,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         verticalScroll: false,
                         horizontalScroll: false,
                       ),
