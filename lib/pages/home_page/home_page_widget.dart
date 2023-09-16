@@ -86,7 +86,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
                           FFButtonWidget(
-                            onPressed: () async {},
+                            onPressed: () async {
+                              context.pushNamed('WebViewRedirect');
+                            },
                             text: 'WebView Page',
                             options: FFButtonOptions(
                               height: 40.0,
@@ -136,8 +138,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
                           FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('TargetPage');
                             },
                             text: 'Target Page',
                             options: FFButtonOptions(
