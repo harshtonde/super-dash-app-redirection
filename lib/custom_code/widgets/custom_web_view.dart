@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomWebView extends StatefulWidget {
   const CustomWebView({
@@ -35,11 +36,28 @@ class _CustomWebViewState extends State<CustomWebView> {
   @override
   void initState() {
     controller = WebViewController();
+    controller..setJavaScriptMode(JavaScriptMode.unrestricted);
+    controller
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onNavigationRequest: (request) async {
+            if (true) {
+              if (request.url.startsWith('https://super-dash-app.web.app')) {
+                String url = request.url;
+                await launchUrl(
+                  Uri.parse(url),
+                  mode: LaunchMode.externalApplication,
+                );
+                return NavigationDecision.prevent;
+              }
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      );
     if (widget.html) {
-      controller..setJavaScriptMode(JavaScriptMode.unrestricted);
       controller.loadHtmlString(widget.content);
     } else {
-      controller..setJavaScriptMode(JavaScriptMode.unrestricted);
       controller.loadRequest(Uri.parse(widget.content));
     }
 
@@ -57,9 +75,12 @@ class _CustomWebViewState extends State<CustomWebView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: widget.width ?? MediaQuery.sizeOf(context).width,
-        height: widget.height ?? MediaQuery.sizeOf(context).height,
-        child: WebViewWidget(controller: controller));
+      width: widget.width ?? MediaQuery.sizeOf(context).width,
+      height: widget.height ?? MediaQuery.sizeOf(context).height,
+      child: WebViewWidget(
+        controller: controller,
+      ),
+    );
   }
 
   /// Function for file selection from gallery
