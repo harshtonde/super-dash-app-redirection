@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:uni_links/uni_links.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -18,6 +22,33 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  StreamSubscription? _sub;
+
+  Future<void> initUniLinks() async {
+    try {
+      final initialLink = await getInitialUri();
+      handleDeepLink(initialLink);
+    } catch (e) {
+      print("Error initializing uni_links: $e");
+    }
+
+    // Listen for future deep links
+    _sub = uriLinkStream.listen((Uri? uri) {
+      handleDeepLink(uri);
+    }, onError: (err) {
+      print("Error listening to uni_links: $err");
+    });
+  }
+
+  void handleDeepLink(Uri? uri) {
+    if (uri != null) {
+      print("Received deep link: $uri");
+      print("printing parameters");
+      print(uri.queryParameters['status'].toString());
+      context.pushNamed('page1');
+    }
+  }
 
   @override
   void initState() {
