@@ -1,29 +1,29 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/flutter_flow_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'web_view_redirect_model.dart';
-export 'web_view_redirect_model.dart';
+import 'normal_web_view_model.dart';
+export 'normal_web_view_model.dart';
 
-class WebViewRedirectWidget extends StatefulWidget {
-  const WebViewRedirectWidget({Key? key}) : super(key: key);
+class NormalWebViewWidget extends StatefulWidget {
+  const NormalWebViewWidget({Key? key}) : super(key: key);
 
   @override
-  _WebViewRedirectWidgetState createState() => _WebViewRedirectWidgetState();
+  _NormalWebViewWidgetState createState() => _NormalWebViewWidgetState();
 }
 
-class _WebViewRedirectWidgetState extends State<WebViewRedirectWidget> {
-  late WebViewRedirectModel _model;
+class _NormalWebViewWidgetState extends State<NormalWebViewWidget> {
+  late NormalWebViewModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => WebViewRedirectModel());
+    _model = createModel(context, () => NormalWebViewModel());
   }
 
   @override
@@ -89,17 +89,13 @@ class _WebViewRedirectWidgetState extends State<WebViewRedirectWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                      child: Container(
-                        width: 400.0,
-                        height: MediaQuery.sizeOf(context).height * 1.0,
-                        child: custom_widgets.CustomWebView(
-                          width: 400.0,
-                          height: MediaQuery.sizeOf(context).height * 1.0,
-                          content:
-                              'https://web-redirection-app.flutterflow.app',
-                          html: false,
-                        ),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      child: FlutterFlowWebView(
+                        content: 'https://flutter.dev',
+                        bypass: false,
+                        height: 500.0,
+                        verticalScroll: false,
+                        horizontalScroll: false,
                       ),
                     ),
                   ),

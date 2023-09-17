@@ -56,6 +56,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TargetPage',
           path: '/targetPage',
           builder: (context, params) => TargetPageWidget(),
+        ),
+        FFRoute(
+          name: 'NormalWebView',
+          path: '/normalWebView',
+          builder: (context, params) => NormalWebViewWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
